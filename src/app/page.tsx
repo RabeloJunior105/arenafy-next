@@ -1,103 +1,79 @@
-import Image from "next/image";
+"use client";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Play, Video, Zap } from "lucide-react";
+import { useState } from "react";
+import { LoginModal } from "./auth/@sheet/login.modal";
+import Header from "@/components/layouts/header";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+      <Header />
+
+      {/* Hero Section */}
+      <section className="relative py-20 px-4 overflow-hidden">
+        <div className="container mx-auto text-center relative z-10">
+          <div className="mb-8">
+            <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
+              🔥 NOVA TEMPORADA DISPONÍVEL
+            </Badge>
+          </div>
+
+          <h2 className="text-6xl md:text-8xl font-black mb-6 text-white leading-tight">
+            CAPTURE SUA
+            <span className="block bg-gradient-to-r from-[#C4F000] via-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              JOGADA ÉPICA
+            </span>
+          </h2>
+
+          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Grave, compartilhe e reviva os melhores momentos dos seus jogos.
+            <span className="text-[#C4F000] font-semibold">Ganhe XP</span>, desbloqueie conquistas e
+            <span className="text-cyan-400 font-semibold"> domine as arenas</span>!
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-[#C4F000] to-cyan-400 text-black hover:from-[#B8E000] hover:to-cyan-300 font-bold px-12 py-4 text-lg rounded-xl shadow-lg shadow-[#C4F000]/25 transition-all duration-300 hover:scale-105"
+              onClick={() => setIsLoginOpen(true)}
+            >
+              <Play className="w-6 h-6 mr-3" />
+              COMEÇAR AGORA
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 border-white/20 text-white hover:bg-white/10 font-bold px-12 py-4 text-lg rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105 bg-transparent"
+            >
+              <Video className="w-6 h-6 mr-3" />
+              VER CLIPS ÉPICOS
+            </Button>
+          </div>
+
+          {/* Stats Row */}
+          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+            <div className="text-center">
+              <div className="text-3xl font-black text-[#C4F000] mb-1">50K+</div>
+              <div className="text-sm text-gray-400 font-medium">Clips Criados</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-black text-cyan-400 mb-1">200+</div>
+              <div className="text-sm text-gray-400 font-medium">Arenas Ativas</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-black text-purple-400 mb-1">15K+</div>
+              <div className="text-sm text-gray-400 font-medium">Jogadores</div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </div>
-  );
+  )
 }
