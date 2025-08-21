@@ -4,17 +4,10 @@ import { useState, useMemo } from "react"
 import {
     LayoutDashboard,
     MapPin,
-    Calendar,
-    Video,
-    ShoppingCart,
-    Settings,
-    BarChart3,
-    Camera,
-    Package,
-    CreditCard,
     ChevronRight,
     Zap,
     LogOut,
+    Package,
 } from "lucide-react"
 import {
     Sidebar as UISidebar,
@@ -45,34 +38,6 @@ interface MenuItem {
     items?: { title: string; url: string }[]
 }
 
-interface Arena {
-    id: string
-    name: string
-    logo: LucideIcon
-}
-
-interface User {
-    id: number
-    name: string
-    role: string
-    level: number
-    xp: number
-    maxXp: number
-    avatar: string
-    badges: string[]
-    stats: {
-        clipsCreated: number
-        totalViews: number
-        totalLikes: number
-    }
-}
-
-interface AppSidebarProps {
-    user: User
-    arenas: Arena[]
-}
-
-// Definição do menu em JSON
 const menuItems: MenuItem[] = [
     {
         id: "dashboard",
@@ -87,7 +52,6 @@ const menuItems: MenuItem[] = [
         url: "arenas",
         icon: MapPin,
         color: "text-cyan-400",
-        items: [], // Preenchido dinamicamente com arenas
     },
     {
         id: "quadras",
@@ -95,28 +59,6 @@ const menuItems: MenuItem[] = [
         url: "quadras",
         icon: MapPin,
         color: "text-cyan-400",
-        items: [], // Preenchido dinamicamente com arenas
-    },
-    {
-        id: "scheduling",
-        title: "Agendamentos",
-        url: "scheduling",
-        icon: Calendar,
-        color: "text-purple-400",
-    },
-    {
-        id: "clips",
-        title: "Clips",
-        url: "clips",
-        icon: Video,
-        color: "text-pink-400",
-    },
-    {
-        id: "cameras",
-        title: "Câmeras",
-        url: "cameras",
-        icon: Camera,
-        color: "text-orange-400",
     },
     {
         id: "products",
@@ -124,56 +66,79 @@ const menuItems: MenuItem[] = [
         url: "products",
         icon: Package,
         color: "text-green-400",
+        items: [
+            { title: "Listar Produtos", url: "products" },
+            { title: "Adicionar Produto", url: "products/add" },
+            { title: "Categorias", url: "products/categories" },
+            { title: "Adicionar Categoria", url: "products/categories/add" },
+        ]
     },
-    {
-        id: "payments",
-        title: "Pagamentos",
-        url: "payments",
-        icon: CreditCard,
-        color: "text-blue-400",
-    },
-    {
-        id: "analytics",
-        title: "Relatórios",
-        url: "analytics",
-        icon: BarChart3,
-        color: "text-indigo-400",
-    },
-    {
-        id: "pos",
-        title: "PDV",
-        url: "pos",
-        icon: ShoppingCart,
-        color: "text-yellow-400",
-    },
-    {
-        id: "settings",
-        title: "Configurações",
-        url: "settings",
-        icon: Settings,
-        color: "text-gray-400",
-    },
+    /*     {
+            id: "scheduling",
+            title: "Agendamentos",
+            url: "scheduling",
+            icon: Calendar,
+            color: "text-purple-400",
+        },
+        {
+            id: "clips",
+            title: "Clips",
+            url: "clips",
+            icon: Video,
+            color: "text-pink-400",
+        },
+        {
+            id: "cameras",
+            title: "Câmeras",
+            url: "cameras",
+            icon: Camera,
+            color: "text-orange-400",
+        },
+        {
+            id: "products",
+            title: "Produtos",
+            url: "products",
+            icon: Package,
+            color: "text-green-400",
+        },
+        {
+            id: "payments",
+            title: "Pagamentos",
+            url: "payments",
+            icon: CreditCard,
+            color: "text-blue-400",
+        },
+        {
+            id: "analytics",
+            title: "Relatórios",
+            url: "analytics",
+            icon: BarChart3,
+            color: "text-indigo-400",
+        },
+        {
+            id: "pos",
+            title: "PDV",
+            url: "pos",
+            icon: ShoppingCart,
+            color: "text-yellow-400",
+        },
+        {
+            id: "settings",
+            title: "Configurações",
+            url: "settings",
+            icon: Settings,
+            color: "text-gray-400",
+        }, */
 ]
 
-export function AppSidebar({ user, arenas }: AppSidebarProps) {
+export function AppSidebar() {
     const [activeModule, setActiveModule] = useState("dashboard")
-    const [activeArena, setActiveArena] = useState<Arena | undefined>(arenas[0])
 
-    // Preencher subitens de arenas dinamicamente
     const updatedMenuItems = useMemo(() => {
         return menuItems.map((item) => {
-            if (item.id === "arenas") {
-                return {
-                    ...item,
-                    items: arenas.map((arena) => ({
-                        title: arena.name,
-                        url: `arenas/${arena.id}`,
-                    })),
-                }
-            }
             return item
         })
-    }, [arenas])
+    }, [])
 
     return (
         <UISidebar collapsible="icon" className="bg-black/20 backdrop-blur-xl border-r border-white/10">
@@ -266,7 +231,7 @@ export function AppSidebar({ user, arenas }: AppSidebarProps) {
                 </SidebarGroup >
 
                 {/* Logout */}
-                < SidebarGroup className="mt-auto" >
+                <SidebarGroup className="mt-auto" >
                     <SidebarMenu>
                         <SidebarMenuItem>
                             <SidebarMenuButton

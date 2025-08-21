@@ -7,7 +7,6 @@ import BreadcrumbComponent from "@/components/breadcrumb";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import ProfileComponent from "@/components/layouts/authorized/profile";
 import { AppSidebar } from "@/components/layouts/authorized/header";
-import { MapPin, Zap } from "lucide-react";
 
 export default function AppLayout({
     children,
@@ -26,24 +25,6 @@ export default function AppLayout({
         }
     }, [session, status, router]);
 
-    const arenas = [
-        { id: "1", name: "Arena Central", logo: Zap },
-        { id: "2", name: "Arena Norte", logo: MapPin },
-    ]
-
-    console.log("Session:", session);
-    /* 
-    
-    {
-        "id": "5cd1c067-72f8-4557-a022-64b7a7c067c7",
-        "email": "rabelojunior105@gmail.com",
-        "name": "Junior Rabelo",
-        "image": "https://lh3.googleusercontent.com/a/ACg8ocJMVgNJH3GVVp3B6_Qk9siHxR0IEr2rosIZmMdveoSF5qiCbshD2g=s96-c",
-        "isEmailVerified": true,
-        "provider": "google",
-        "providerId": "110010779143273783533"
-    }
-    */
     const user = {
         /* ...session.user, */
         id: 1,
@@ -59,7 +40,7 @@ export default function AppLayout({
 
     return (
         <SidebarProvider className="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-            <AppSidebar user={user} arenas={arenas} />
+            <AppSidebar />
             <SidebarInset
                 className="
       ml-[0px] h-screen overflow-y-auto
