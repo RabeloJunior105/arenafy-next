@@ -28,7 +28,7 @@ export default function Header() {
                         </div>
                         <div>
                             <h1 className="text-2xl font-black bg-gradient-to-r from-[#C4F000] via-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                                ARENA<span className="text-white">CLIPS</span>
+                                ARENA<span className="text-white">FY</span>
                             </h1>
                             <p className="text-xs text-gray-400 font-medium">LEVEL UP YOUR GAME</p>
                         </div>
